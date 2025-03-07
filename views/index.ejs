@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=74768&format=png&color=000000" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ShorLink - Home</title>
+</head>
+<body class="bg-[#111827] flex flex-col ">
+
+
+        <div class="flex flex-row mt-3 items-center  justify-between px-10 h-15">
+
+            <div class="flex  w-[30%] flex-row justify-start items-center">
+
+                <img class="scale-[0.5]" src="https://img.icons8.com/?size=100&id=74768&format=png&color=009BF3" alt="image not found">
+            
+                <span class="text-[#009BF3] font-[500] text-[30px] -ml-6">
+                    <span class="text-[white]">Shor</span>Link
+                </span>
+
+            </div>
+
+            <div class="flex  w-[30%] flex-row justify-end items-center">
+                
+                <ul>
+                    <li class="text-white">
+                        <button type="button" class="text-white bg-[#42A5F5] hover:bg-[#42A5F5] focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 hover:cursor-pointer dark:hover:bg-blue-700 dark:focus:ring-blue-800">Donate Us</button>
+                    </li>
+                </ul>
+
+            </div>
+
+
+        </div>
+
+        <form id="main" action="/" method="post" class="flex justify-center">
+        <div class="mb-6 w-[40%] self-center  flex flex-col items-between  justify-center pt-2">
+            <div class="flex flex-row gap-2">
+                <input type="text" name="url" id="default-input" placeholder="Enter the base URL here !" class="w-[82%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+            <button type="submit" class=" text-white hover:cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-.8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Shorten!</button>
+            </div>
+            
+
+            <% if(data.success == false && data.val == "domainCheck"){ %>
+                
+                <span class="text-red-700"> &nbsp;<%=data.msg%></span>                
+
+            <%}%>
+
+
+        </div>
+    </form>
+
+
+        <% if(data && data.success == true){%>  
+                <div class="grid grid-cols-8 w-[40%] self-center gap-2  ">
+                    <label for="npm-install" class="sr-only">Label</label>
+                    <input  id="npm-install" type="text" class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"  disabled readonly>
+
+                   
+
+                    <button data-copy-to-clipboard-target="npm-install" class="col-span-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
+                        <i class="fa-solid fa-copy scale-[1.4]"></i>
+                    </button>
+                </div>
+        <%}%>
+
+    
+
+            <% if(data && data.success == true){%>
+            <script>
+
+            let main = document.getElementById("main")
+
+            main.style.display = "none"
+
+            let uri = document.getElementById("npm-install")
+            uri.value = window.location.href+"redirect"+"/<%=data.value%>"
+
+            
+
+
+            </script>
+            <%}%>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>
