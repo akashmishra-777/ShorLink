@@ -4,7 +4,7 @@
   "description": "This is a simple url shortner website that makes url short.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
